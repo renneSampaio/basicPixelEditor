@@ -7,7 +7,7 @@ SOURCE_EXT := cpp
 SOURCES := $(shell find $(SRC_DIR) -type f -name *.$(SOURCE_EXT))
 OBJECTS := $(patsubst $(SRC_DIR)/%,$(BUILD_DIR)/%,$(SOURCES:.$(SOURCE_EXT)=.o))
 
-CXXFLAGS = -g -Wall
+CXXFLAGS = -g -Wall -std=c++11
 LIBS := -lGL -lglut -LGLEW
 INC := -Iinclude
 
