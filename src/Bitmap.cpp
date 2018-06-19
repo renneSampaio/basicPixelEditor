@@ -119,7 +119,7 @@ void Bitmap::draw() const
 	    for (int x = 0; x < width; x++, px += pw)
 	    {
 		Pixel color = getPixelSafe(x, y);
-		glColor4ui(color.r, color.g, color.b, color.a);
+		glColor4ub(color.r, color.g, color.b, color.a);
 
 		glVertex2f(px, py);
 		glVertex2f(px+pw, py);

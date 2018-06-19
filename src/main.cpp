@@ -1,17 +1,39 @@
 #include <iostream>
+#include <GL/glew.h>
+#include <GL/freeglut.h>
 
 #include "Bitmap.hpp"
 
-int main() 
+Bitmap image(32,32);
+
+const int PIXEL_SIZE = 10;
+
+void draw();
+
+int main(int argc, char** argv) 
 {
-    Bitmap img(100,100);
-    img.clear(Pixel{0x01010502});
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+    glutInitWindowSize(image.getWidth() * PIXEL_SIZE, image.getHeight() * PIXEL_SIZE);
+    glutCreateWindow("Image Editor");
 
-    img.setPixelSafe(10, 10, 0x14FFFFFF);
+    glewInit();
 
-    std::cout << +img.getPixelSafe(10,10).r << '\n';
-    std::cout << +img.getPixelSafe(40,30).g << '\n';
-    std::cout << +img.getPixelSafe(50,10).b << '\n';
-    std::cout << +img.getPixelSafe(20,30).a << '\n';
+    glutDisplayFunc(draw);
 
+    glClearColor(0,0,0,1);
+
+    image.clear(0x0000FFFF);
+
+    glutMainLoop();
+}
+
+void draw()
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    image.draw();
+
+    glutSwapBuffers();
+    glutPostRedisplay();
 }
