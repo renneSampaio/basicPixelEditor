@@ -101,5 +101,8 @@ void mouseInput(int button, int state, int x, int y)
 
 void mouseMotionInput(int x, int y)
 {
+    x /= PIXEL_SIZE;
+    y /= PIXEL_SIZE;
+    
     currentTool->getMouseMotionInput(x,y);
 }
