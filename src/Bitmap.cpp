@@ -80,6 +80,12 @@ void Bitmap::setPixelSafe(int x, int y, Pixel color)
     }
 }
 
+void Bitmap::drawHorizontalLine(int x, int y, int width, Pixel color) {
+    for (int px = x; px <= x + width; px++) {
+        setPixelSafe(px, y, color);
+    }
+}
+
 int Bitmap::getWidth() const
 {
     return width;

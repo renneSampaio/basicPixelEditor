@@ -23,6 +23,8 @@ class Bitmap {
 	void setPixelSafe(int x, int y, Pixel color);
 	void setPixel(int x, int y, Pixel color);
 
+	void drawHorizontalLine(int x, int y, int width, Pixel color);
+
 	int getWidth() const;
 	int getHeight() const;
 
@@ -31,6 +33,7 @@ class Bitmap {
 	void resize(int newWidth, int newHeight);
 
 	void draw() const;
+
     private:
 	std::vector<Pixel> buffer;
 	std::vector<Pixel*> rows;
