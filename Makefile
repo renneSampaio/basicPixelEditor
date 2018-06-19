@@ -19,6 +19,8 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.$(SOURCE_EXT)
 	@mkdir -p $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) $(INC) -c -o $@ $<
 
-.PHONY: clean
+.PHONY: clean run
 clean:
 	rm -r $(BUILD_DIR) bin
+run: $(TARGET)
+	./$<
