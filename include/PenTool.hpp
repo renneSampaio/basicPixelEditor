@@ -2,12 +2,13 @@
 #define PENTOOL_HEADER__
 
 #include "Tool.hpp"
+#include "Pixel.hpp"
 
 class PenTool : public Tool
 {
     public:
 	PenTool(Bitmap& img, Pixel& mainColor, Pixel& secondaryColor)
-	    :Tool(img, mainColor, secondaryColor)
+	    :Tool(img, mainColor, secondaryColor), currentColor(mainColor)
 	{}
 
 	void getMouseInput(int button, int state, int x, int y);
@@ -15,6 +16,9 @@ class PenTool : public Tool
 	void getMouseMotionInput(int x, int y);
 
 	~PenTool();
+
+    private:
+	Pixel currentColor;
 };
 
 #endif

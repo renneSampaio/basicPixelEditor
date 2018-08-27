@@ -9,6 +9,7 @@
 #include "RectTool.hpp"
 #include "CircleTool.hpp"
 #include "PolyTool.hpp"
+#include "FillTool.hpp"
 
 Bitmap image(32,32);
 Tool* currentTool;
@@ -55,6 +56,11 @@ void draw()
     glutPostRedisplay();
 }
 
+void changeTool(Tool* newTool) {
+    delete currentTool;
+    currentTool = newTool;
+}
+
 void keyboardInput(unsigned char key, int x, int y)
 {
     x /= PIXEL_SIZE;
@@ -67,24 +73,44 @@ void keyboardInput(unsigned char key, int x, int y)
             image.clear(0xFFFFFFFF);
             break;
         case 'p':
-            delete currentTool;
-            currentTool = new PenTool(image, mainColor, secondaryColor);
+            changeTool(new PenTool(image, mainColor, secondaryColor));
             break;
         case 'l':
-            delete currentTool;
-            currentTool = new LineTool(image, mainColor, secondaryColor);
+            changeTool(new LineTool(image, mainColor, secondaryColor));
             break;
         case 's':
-            delete currentTool;
-            currentTool = new CircleTool(image, mainColor, secondaryColor);
+            changeTool(new CircleTool(image, mainColor, secondaryColor));
             break;
         case 'y':
-            delete currentTool;
-            currentTool = new PolyTool(image, mainColor, secondaryColor);
+            changeTool(new PolyTool(image, mainColor, secondaryColor));
             break;
         case 'r':
-            delete currentTool;
-            currentTool = new RectTool(image, mainColor, secondaryColor);
+            changeTool(new RectTool(image, mainColor, secondaryColor));
+            break;
+        case 'f':
+            changeTool(new FillTool(image, mainColor, secondaryColor));
+            break;
+	case 'h':
+            std::cout << "Instructions:\n";
+            std::cout << "-> 'c' - Clear image\n";
+            std::cout << "-> 'p' - Pen Tool\n";
+            std::cout << "         Left Click to set pixel with main color\n";
+            std::cout << "         Right Click to set pixel with secondary color\n";
+            std::cout << "-> 'l' - Line Tool\n";
+            std::cout << "         Left Click to set start position\n";
+            std::cout << "         Left Click again to set end position and draw line\n";
+            std::cout << "         Right Click again to finish drawing lines\n";
+            std::cout << "-> 'r' - Rect Tool\n";
+            std::cout << "         Left Click to set first position\n";
+            std::cout << "         Left Click again to set second position and draw circle\n";
+            std::cout << "-> 'y' - Poly Tool\n";
+            std::cout << "         Left Click to add positions to polygon\n";
+            std::cout << "         Right Click to draw polygon (Only draws if there are more than 2 positions set)\n";
+            std::cout << "-> 's' - Circle Tool\n";
+            std::cout << "         Left Click to set center\n";
+            std::cout << "         Left Click again to set radius and draw circle\n";
+            std::cout << "-> 'f' - Fill Tool\n";
+            std::cout << "         Left Click to fill area\n";
             break;
         default:
             currentTool->getKeyboardInput(key, x, y);

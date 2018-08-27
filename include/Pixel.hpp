@@ -28,6 +28,10 @@ struct Pixel {
 
 	return *this;
     }
+
+    bool operator==(Pixel other) {
+        return r == other.r && g == other.g && b==other.b && a == other.a;
+    }
 };
 
 #endif

@@ -31,7 +31,7 @@ void CircleTool::getKeyboardInput(unsigned char key, int x, int y)
 
 void CircleTool::drawCircle(int cx, int cy, int r)
 {
-    float d = 10/4.0 - 2*r;
+    float d = 3 - 2*r;
 
     for (int x = r, y = 0; x >= y; y++) {
         img.setPixelSafe(cx + x, cy + y, mainColor);

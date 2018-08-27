@@ -1,5 +1,5 @@
-#ifndef ELLIPSETOOL_HEADER__
-#define ELLIPSETOOL_HEADER__
+#ifndef CIRCLETOOL_HEADER__
+#define CIRCLETOOL_HEADER__
 
 #include "Tool.hpp"
 
